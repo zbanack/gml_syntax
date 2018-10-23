@@ -1,0 +1,178 @@
+code.prettyprint, pre.prettyprint {border-radius: 4px}
+
+pre.prettyprint {
+	white-space: pre-wrap;
+  padding-top:0;
+  margin-top:0;
+  line-height: 150%;
+}
+
+.gml_capsule{
+  -webkit-box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.125);
+  -moz-box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.125);
+  box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.125); 
+  line-height: 150%;
+  /*border:2px solid #FF0000;*/
+}
+
+.gml_codeblock {
+  white-space: pre-wrap;
+  background-color:#222222;
+  font-size:12px;
+  font-family: Monaco, Consolas, Courier New, monospace;
+  color:#BDC3C7;
+  border-collapse: separate; 
+  line-height: 150%;
+  border-top-left-radius: 7px;
+  line-height: 150%;
+  border-top-right-radius: 7px;
+}
+
+ol.linenums {
+	margin-top: 0;
+line-height: 150%;
+	padding-right:2px;
+	color: #40C3F4;
+	background-color:#2B343B;
+  line-height: 150%;
+}
+
+.gml_header { /*info*/
+  background-color: 181818;
+  line-height: 150%;
+  background-image: linear-gradient(to right, #181818, #009B7C);
+  font-size:12px;
+  font-family: Monaco, Consolas, Courier New, monospace;
+  padding:4px;
+  padding-left:18px;
+  color:#FFFFFF;
+  line-height: 150%;
+  border-collapse: separate; 
+  text-shadow: 0px 1px #000000;
+
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+
+  border-bottom:2px solid #282828;
+
+  margin:0 auto;
+  position:relative
+}
+
+.gml_footer { /*bottom*/
+  background-color:#FFFFFF;
+  font-size:10px;
+  line-height: 150%;
+  margin:0px;
+  margin-top:-12px;
+  margin-bottom:12px;
+  font-family: Monaco, Consolas, Courier New, monospace;
+  padding:4px;
+  padding-left:12px;
+  padding-right:8px;
+  color:#000000;
+  line-height: 150%;
+  text-align: right;
+}
+
+.gml_copy {
+    background-color: Transparent;
+    opacity: 0.75;
+    color: #FFFFFF;
+    margin: auto;
+    position:absolute;
+    margin-right:4px;
+    line-height: 150%;
+    top: 0;
+    height:20px;
+    right: 0;
+    bottom: 0;
+
+    font-size:10px;
+    font-family: Monaco, Consolas, Courier New, monospace;
+
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0px 1px #000000;
+    
+    line-height: 150%;
+
+    border: none;
+    /*border-radius:7px;*/
+
+    cursor: pointer;
+  }
+
+.gml_footer  a:link { color: #5C6A79; text-decoration: none;}
+.gml_footer  a:visited { color: #5C6A79; text-decoration: none; }
+.gml_footer  a:hover { color: #5C6A79; text-decoration: none; font-weight:bold;}
+.gml_footer  a:active { color: #5C6A79; text-decoration: none; }
+
+/* remove dots to the right of numbers */
+ol.linenums{
+    counter-reset:linenumber;
+}
+ol.linenums li{
+    list-style-type:none;
+    counter-increment:linenumber;
+}
+ol.linenums li:before{
+    content: counter(linenumber);
+    float:left;
+    line-height: 150%;
+    margin-left:-6.5em;
+    text-align:right;
+    width:5em;
+}
+
+/* line numbers */
+.linenums li {
+	padding-left:8px;
+	border-left:2px solid #97B2C8;
+	background-color: #222222 !important;
+  line-height: 150%;
+	font-size:12px;
+	font-family: Monaco, Consolas, Courier New, monospace;
+}
+
+.gml_codeblock p {
+  opacity:0.0;
+}
+
+/* colors */
+.str { color: #FFFF00    ; }
+.kwd { color: #FFB871; font-weight: bold; }
+.fnc { color: #E4A667; }
+.com { color: #5B995B; }
+.typ { color: #606; }
+.lit { color: #58E55A; }
+.loc { color: #F5EF94; }
+.pnc { color: #C0C0C0; }
+.pln { color: #B2B1FF; }
+.tag { color: #008;  }
+.int { color: #FF8080;  }
+.atn { color: #606; }
+.atv { color: #080; }
+.dec { color: #FF8080;  }
+.glb { color: #FF7EFF;}
+
+.fnc a:link { color: #E4A667;  text-decoration: underline;}
+.fnc a:visited { color: #E4A667;  text-decoration: underline;}
+.fnc a:hover { color: #70DB93;  text-decoration: underline;font-weight:bold;}
+.fnc a:active { color: #E4A667;  text-decoration: underline;}
+
+@media print {
+  .str { color: #060; }
+  .kwd { color: #006; font-weight: bold; }
+  .fnc { color: #006; font-weight: bold; }
+  .com { color: #600; font-style: italic; }
+  .typ { color: #404; font-weight: bold; }
+  .lit { color: #044; }
+  .loc { color: #044; }
+  .glb { color: #044; }
+  .pnc { color: #440; }
+  .pln { color: #000; }
+  .tag { color: #006; font-weight: bold; }
+  .atn { color: #404; }
+  .atv { color: #060; }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GML Syntax Test</title>
+<script type="text/javascript" src="../gml/js/gml_syntax.js"></script>
+<script type="text/javascript" src="../gml/js/gml_search.js"></script>
+<script type="text/javascript" src="../gml/js/prettify.js"></script>
+<script type="text/javascript" src="../gml/js/lang-gml.js"></script>
+<link href="../gml/style/gml.css" type="text/css" rel="stylesheet" />
+</head>
+<body onload="gml_syntax()" style="padding:32px";>
+
+<div class="gml_codeblock" name="gml_syntax.js">
+</div>
+
+<div class="gml_codeblock" name="check_neighbors();">
+var neighbors, n; // declare temp vars
+neighbors = ds_list_create(); // create a list to hold the cell's neighbors
+ 
+global.zoop = "testing!";
+var obj = instance_create_depth(32, 32, obj_controller);
+
+global.reference_obj = obj;
+
+global.reference_obj.image_angle = 180;
+
+var global_test = 0;
+
+var test_undefined_test = undefined;
+
+var undefined_test = test_undefined_test;
+
+show_debug_message(string(test_undefined_test) + " " + string(global.reference_obj));
+ 
+n[0] = index(i, j - 1); // get the neighbor above us
+n[1] = index(i + 1, j); // get the neighbor to the right of us
+n[2] = index(i, j + 1); // get the neighbor below us
+n[3] = index(i - 1, j); // get the neighbor to the left of us
+ 
+/* if there is a neighbor, n, and it has not been visited, add
+it to the list of avaliable neighbors. Repeat for right, left, above, below*/
+for (var c = 0; c < array_length_1d(n); c++) {
+    if (n[c] != undefined) {
+        if (!n[c].visited) {
+            ds_list_add(neighbors, n[c]);
+        }
+    }
+}
+ 
+// check if we added any neighbors to our list (it's not empty)
+if (!ds_list_empty(neighbors)) {
+    ds_list_shuffle(neighbors); // shuffle the list of neighbors
+    var n = ds_list_find_value(neighbors, 0); // grab the top neighbor
+    ds_list_destroy(neighbors); // destroy the list of neighbors
+    return n; // return the randomly-selected neighbor
+} else {
+    ds_list_destroy(neighbors); // destroy the list of neighbors
+    return undefined; // return undefined, we have no neighbors
+}
+</div>
+<div id="nothing">
+<p>Random stuff here</p>
+</div>
+<div class="gml_codeblock" name="combination();">
+/// @function add_commas(integer, separation);
+/// @description Insert commas in a number, from right to left, every separation spaces
+/// @param {real} The input value
+/// @param {real} Number of digits grouped between commas
+ 
+var str = string(argument0);
+var setp = argument1;
+for (var i = string_length(str) - (sep - 1); i > 1; i -= sep) {
+  str = string_insert(",", str, i);
+}
+return str;
+</div>
+<div class="noth2ing">
+<p>Random stuff here</p>
+</div>
+<div class="gml_codeblock" name="test 1">
+/// bytes_to_b64(str)
+//
+//  Returns a string of base64 digits (RFC 3548), 6 bits each.
+//
+//      str         raw bytes, 8 bits each, string
+//
+/// GMLscripts.com/license
+{
+    var str, len, pad, tab, b64, i, bin;
+    str = argument0;
+    len = string_length(str);
+    pad = "=";
+    tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    b64 = "";
+    for (i=0; i< len ; i+=3) {
+        bin[0] = ord(string_char_at(str,i+1));
+        bin[1] = ord(string_char_at(str,i+2));
+        bin[2] = ord(string_char_at(str,i+3));
+        b64 += string_char_at(tab,1+(bin[0]>>2));
+        b64 += string_char_at(tab,1+(((bin[0]&3)<<4)|(bin[1]>>4)));
+        if (i+1 >= len) b64 += pad;
+        else b64 += string_char_at(tab,1+(((bin[1]&15)<<2)|(bin[2]>>6)));
+        if (i+2 >= len) b64 += pad;
+        else b64 += string_char_at(tab,1+(bin[2]&63));
+    }
+    return b64;
+}
+</div>
+
+<br>&nbsp;<br>&nbsp;<br>&nbsp;
+
+<div class="gml_codeblock" name="add_commas(integer, separation)">
+/// @function add_commas(integer, separation);
+/// @description Insert commas in a number, from right to left, every separation spaces
+/// @param {real} The input value
+/// @param {real} Number of digits grouped between commas
+ 
+var str = string(argument0);
+var sep = argument1;
+for (var i = string_length(str) - (sep - 1); i > 1; i -= sep) {
+  str = string_insert(",", str, i);
+}
+return str;
+</div>
+<br>&nbsp;<br>&nbsp;<br>&nbsp;
+<div class="gml_codeblock" name="decode_real_double(str)">
+/// decode_real_double(str)
+//
+//  Returns a real value decoded from the given string of
+//  raw bytes in IEEE 754 double precision format.
+//
+//      str     8-byte in IEEE 754 double precision format, string
+//
+/// GMLscripts.com/license
+{
+    var str, S, E, M, byte, n;
+    str = argument0;
+    var i;
+    for (i = 0; i < 8; i += 1) {
+        byte[i] = ord(string_char_at(str,8 - i));
+    }
+    S = 1 - 2*((byte[7] & $80) > 0);
+    i = 0;
+    M = 0;
+    while (i <= 51) {
+        if (byte[i div 8] & (1<<(i mod 8)) > 0) {
+            M += 1;
+        }
+        M /= 2;
+        i += 1;
+    }
+    i = 62;
+    E = 0;
+    while (i > 51) {
+        E *= 2;
+        if (byte[i div 8] & (1<<(i mod 8)) > 0) {
+            E += 1;
+        }
+        i -= 1;
+    }
+    if (E == 0) {
+        n = S * M * power(2, -1022);
+    }
+    else {
+        n = S * (M + 1) * power(2, E - 1023);
+    }
+    return n;
+}
+</div>
+<br>&nbsp;<br>&nbsp;<br>&nbsp;
+<div class="gml_codeblock" name="gml_syntax.js">
+/// gml_syntax.js
+
+/*
+    A JavaScript-based GameMaker Language
+    syntax highlighter for code snippets
+*/
+
+var str = string(argument0);
+var sep = argument1;
+for (var i = string_length(str) - (sep - 1); i > 1; i -= sep) {
+  str = string_insert(",", str, i);
+}
+return str;
+</div>
+<br>&nbsp;<br>&nbsp;<br>&nbsp;
+</body>
+</html>
