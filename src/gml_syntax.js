@@ -14,7 +14,7 @@
  *              "author" tags associated with them.
  *
  * @link      https://github.com/zbanack/gml_syntax
- * @license   GNU AGPLv3 <https://www.gnu.org/licenses/agpl-3.0.en.html>
+ * @license   GNU GPLv3 <https://github.com/zbanack/gml_syntax/blob/master/LICENSE>
  *              NOTE: Unless otherwise provided with explicit written
  *              permission, this software should be distributed
  *              with visible, clickable links to any of the following:

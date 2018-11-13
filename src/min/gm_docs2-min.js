@@ -1,6 +1,6 @@
 /*!
  * gm_docs2 v1.0.0 (https://github.com/zbanack/gml_syntax)
- * Licensed under GNU AGPLv3
+ * Licensed under GNU GPLv3
  */
 var gmD={},gmG={};gmD.gamemakerstudiomanual="$aa/$ab/index";gmD.gamemakerstudiolicences="$aa/$ab/$ac/$ad/1_licences";gmD.installing="$aa/$ab/$ac/$ad/2_installation";gmD.updating="$aa/$ab/$ac/$ad/3_updating";gmD.releasenotes="$aa/$ab/$ac/$ad/4_release_notes";gmD.requiredsdks="$aa/$ab/$ac/$ad/5_required_sdks";gmD.licensing="$aa/$ab/$ac/$ad/6_licensing";gmD.preferences="$aa/$ab/$ac/$ad/7_$ae";gmD.ideinput="$aa/$ab/$ac/$ad/8_input";gmD.settingup="$aa/$ab/$ac/$ad/index";gmD.generalpreferences="$aa/$ab/$ac/$ad/$ae/index";
 gmD.preferencesdialogueeditor="$aa/$ab/$ac/$ad/$ae/prefs_draganddrop";gmD.preferencesdialogueeditor="$aa/$ab/$ac/$ad/$ae/prefs_extensioneditor";gmD.preferencesgeneral="$aa/$ab/$ac/$ad/$ae/prefs_$cc";gmD.preferencesimageeditor="$aa/$ab/$ac/$ad/$ae/prefs_imageeditor";gmD.preferenceslanguage="$aa/$ab/$ac/$ad/$ae/prefs_languages";gmD.preferencesmarketplace="$aa/$ab/$ac/$ad/$ae/prefs_marketplace";gmD.preferencesobjecteditor="$aa/$ab/$ac/$ad/$ae/prefs_objecteditor";gmD.preferencesplugins="$aa/$ab/$ac/$ad/$ae/prefs_plugins";

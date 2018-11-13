@@ -1,6 +1,6 @@
 /*!
  * gm_docs2 v1.0.0 (https://github.com/zbanack/gml_syntax)
- * Licensed under GNU AGPLv3
+ * Licensed under GNU GPLv3
  */
  
 let gmD = {};
