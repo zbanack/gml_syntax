@@ -96,7 +96,7 @@ Attribute     | Description
 </div>
 ```
 
-[insert image here]
+![gml_syntax demo image 1](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-1.png?raw=true)
 
 ```
 <div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/fibonacci" title="fibonacci(n)">
@@ -113,7 +113,7 @@ Attribute     | Description
 </div>
 ```
 
-[insert image here]
+![gml_syntax demo image 2](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-2.png?raw=true)
 
 ```
 <div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/ds_grid_translate" title="ds_grid_translate(id,horiz,vert) ">
@@ -151,7 +151,7 @@ Attribute     | Description
 </div>
 ```
 
-[insert image here]
+![gml_syntax demo image 3](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-3.png?raw=true)
 
 ## Compression/Minifying
 
