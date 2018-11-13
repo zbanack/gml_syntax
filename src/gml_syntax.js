@@ -3,8 +3,7 @@
  *
  * A JavaScript syntax highligher for GameMaker Language.
  *    Includes local and global variable scoping and
- *    documentation function-linking (requires gm_docs2.js
- *    <https://github.com/zbanack/gm_docs2>)
+ *    documentation function-linking (requires gm_docs2.js)
  *
  * @file      This file will pretty-print HTML div elements
  *              of the class "gm_codeblock".
