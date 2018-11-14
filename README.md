@@ -1,6 +1,6 @@
 # gml_syntax.js
 
-A JavaScript syntax highligher for the GameMaker Language, [YoYo Games' GameMaker Studio 1.4 and 2.x](https://yoyogames.com) programming language. Created for [The Step Event](http://thestepevent.com).
+A JavaScript syntax highlighter for the GameMaker Language, [YoYo Games' GameMaker Studio 1.4 and 2.x](https://yoyogames.com) programming language. Created for [The Step Event](http://thestepevent.com).
 
 **Includes:**
 * Color-coded syntax near-1:1 to what you'll find in GameMaker Studio 2.x
@@ -161,11 +161,11 @@ Attribute     | Description
 ## Browser Support
 
 This project performs as intended on the following web browsers:
-* Microsoft Edge v42.17134.1.0
-* Microsoft EdgeHTML v17.17134
 * Google Chrome v70.0.3538.102
 * Firefox Firefox v63.0.1
 * Internet Explorer v11.345.17134.0
+* Microsoft Edge v42.17134.1.0
+* Microsoft EdgeHTML v17.17134
 
 ## Authors
 

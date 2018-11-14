@@ -210,7 +210,7 @@ function gml_syntax() {
     }
     
     let linkback = (
-      "<a href=\"http://thestepevent.com\" title=\"Developed by Zack Banack\" target=\"_blank\">" +
+      "<a href=\"https://github.com/zbanack/gml_syntax\" title=\"Developed by Zack Banack\" target=\"_blank\">" +
         "gml_syntax.js " + GM_VERSION + "</a>&nbsp;<span class=\"gm_span_heart\">&#9829</span>"
     );
 
