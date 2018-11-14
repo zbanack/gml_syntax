@@ -114,7 +114,7 @@
 			}
 			</div>
 
-			<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/ds_grid_translate" title="ds_grid_translate(id,horiz,vert) ">
+			<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/ds_grid_translate" title="ds_grid_translate(id,horiz,vert)">
 			/// ds_grid_translate(id,horiz,vert)
 			//
 			//  Shifts the contents of a grid by a given number of rows
@@ -145,6 +145,34 @@
 			    ds_grid_copy(dsid,temp);
 			    ds_grid_destroy(temp);
 			    return 0;
+			}
+			</div>
+
+			<div class="gm_codeblock" author="EricDB" source="https://www.gmlscripts.com/script/intercept_course" title="intercept_course(origin,target,speed)">
+			/// intercept_course(origin,target,speed)
+			//
+			//  Returns the course direction required to hit a moving target
+			//  at a given projectile speed, or (-1) if no solution is found.
+			//
+			//      origin      instance with position (x,y), real
+			//      target      instance with position (x,y) and (speed), real
+			//      speed       speed of the projectile, real
+			//
+			/// GMLscripts.com/license
+			{
+			    var origin,target,pspeed,dir,alpha,phi,beta;
+			    origin = argument0;
+			    target = argument1;
+			    pspeed = argument2;
+			    dir = point_direction(origin.x,origin.y,target.x,target.y);
+			    alpha = target.speed / pspeed;
+			    phi = degtorad(target.direction - dir);
+			    beta = alpha * sin(phi);
+			    if (abs(beta) >= 1) {
+			        return (-1);
+			    }
+			    dir += radtodeg(arcsin(beta));
+			    return dir;
 			}
 			</div>
 			<br/>
