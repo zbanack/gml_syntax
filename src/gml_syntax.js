@@ -22,11 +22,11 @@
  *                2) http://thestepevent.com
  *                3) https://zackbanack.com
  *
- * @version   v0.9.1
+ * @version   v0.9.2
  * @date      November 13, 2018
  */
 
-const GM_VERSION = "v0.9.1";
+const GM_VERSION = "v0.9.2";
 const GM_TOKEN_TYPES = [
   { regex: /^[\t\n\r \xA0]/, tokenType: "gm_emp" },
   { regex: /^(?:global\.)(.*?)([A-Za-z0-9_])*/, tokenType: "gm_glo" },
@@ -160,7 +160,7 @@ function gml_syntax() {
         if (tkn_typ === "gm_fnc" && typeof gm_docs2_pull === "function") {
           tkn = (
             "<a href=\"" + gm_docs2_pull(tkn) + "\" target=\"_blank\" title=" +
-            "GameMaker Studio documentation &raquo; " + tkn + "\">" + tkn + "</a>"
+            "\"GameMaker Studio documentation &raquo; " + tkn_str + "\">" + tkn_str + "</a>"
           );
         }
         // Local variable, change span type
