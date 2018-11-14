@@ -10,7 +10,7 @@ A JavaScript syntax highlighter for the GameMaker Language, [YoYo Games' GameMak
 
 ## Demo
 
-[screenshot goes here]
+![gml_syntax demo image 0](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-0.png?raw=true)
 
 You can check out a live demo of gml_syntax.js in your browser **[here](https://banack.me/gm/gml_syntax/)**.
 
