@@ -165,6 +165,7 @@ This project performs as intended on the following web browsers:
 * Google Chrome v70.0.3538.102
 * Firefox Firefox v63.0.1
 * Internet Explorer v11.345.17134.0
+* Safari (macOS) Version 12.0 (14606.1.36.1.9)
 * Microsoft Edge v42.17134.1.0
 * Microsoft EdgeHTML v17.17134
 
