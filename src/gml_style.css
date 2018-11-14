@@ -99,7 +99,7 @@
     width: 50%;
 }
 
-.gm_header_left p, .gm_header_right p, .gm_footer_left p, .gm_footer_right p {
+.gm_par {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

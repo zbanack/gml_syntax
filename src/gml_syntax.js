@@ -22,11 +22,11 @@
  *                2) http://thestepevent.com
  *                3) https://zackbanack.com
  *
- * @version   v0.9.3
+ * @version   v0.9.4
  * @date      November 13, 2018
  */
 
-const GM_VERSION = "v0.9.3";
+const GM_VERSION = "v0.9.4";
 const GM_TOKEN_TYPES = [
   { regex: /^[\t\n\r \xA0]/, tokenType: "gm_emp" },
   { regex: /^(?:global\.)(.*?)([A-Za-z0-9_])*/, tokenType: "gm_glo" },
@@ -272,14 +272,14 @@ function gm_row_gen(header, left, right) {
     "<div class=\"gm_" + typ + "\">" +
       "<div class=\"gm_row\">" +
         "<div class=\"gm_" + typ + "_left\">" +
-          "<p>" +
+          "<div class=\"gm_par\">" +
             left +
-          "</p>" +
+          "</div>" +
         "</div>" +
         "<div class=\"gm_" + typ + "_right\">" +
-          "<p>" +
+          "<div class=\"gm_par\">" +
             right +
-          "</p>" +
+          "</div>" +
         "</div>" +
       "</div>" +
     "</div>"
