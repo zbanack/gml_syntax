@@ -22,11 +22,11 @@
  *                2) http://thestepevent.com
  *                3) https://zackbanack.com
  *
- * @version   v0.9.2
+ * @version   v0.9.3
  * @date      November 13, 2018
  */
 
-const GM_VERSION = "v0.9.2";
+const GM_VERSION = "v0.9.3";
 const GM_TOKEN_TYPES = [
   { regex: /^[\t\n\r \xA0]/, tokenType: "gm_emp" },
   { regex: /^(?:global\.)(.*?)([A-Za-z0-9_])*/, tokenType: "gm_glo" },
@@ -97,6 +97,8 @@ function gml_syntax() {
       // Parse data from the token
       let tkn_str = tokens[t].value;
       let tkn_typ = tokens[t].type;
+      if (tkn_str == undefined || tkn_typ == undefined) continue;
+
       let tkn = tkn_str.replace(/ /g, "&nbsp;");
 
       // GML global variables require special syntax treatment
