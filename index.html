@@ -74,106 +74,106 @@
 			<br/>
 
 			<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/unix_timestamp" title="unix_timestamp([datetime])">
-			/// unix_timestamp([datetime])
-			//
-			//  Returns a Unix timestamp for the current time
-			//  or optionally given GameMaker datetime value.
-			//
-			//      datetime    GameMaker datetime, real
-			//
-			/// GMLscripts.com/license
-			{
-			    var timezone = date_get_timezone();
-			 
-			    date_set_timezone(timezone_utc);
-			 
-			    if (argument_count > 0) {
-			        var datetime = argument[0];
-			    } else {
-			        var datetime = date_current_datetime();
-			    }
-			 
-			    var timestamp = round(date_second_span(25569, datetime));
-			 
-			    date_set_timezone(timezone);
-			 
-			    return timestamp;
-			}
+/// unix_timestamp([datetime])
+//
+//  Returns a Unix timestamp for the current time
+//  or optionally given GameMaker datetime value.
+//
+//      datetime    GameMaker datetime, real
+//
+/// GMLscripts.com/license
+{
+    var timezone = date_get_timezone();
+ 
+    date_set_timezone(timezone_utc);
+ 
+    if (argument_count > 0) {
+        var datetime = argument[0];
+    } else {
+        var datetime = date_current_datetime();
+    }
+ 
+    var timestamp = round(date_second_span(25569, datetime));
+ 
+    date_set_timezone(timezone);
+ 
+    return timestamp;
+}
 			</div>
 
 			<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/fibonacci" title="fibonacci(n)">
-			/// fibonacci(n)
-			//
-			//  Returns the nth number of the Fibonacci sequence.
-			//
-			//      n           desired Fibonacci number, non-negative integer, real
-			//
-			/// GMLscripts.com/license
-			{
-			    return round(power((1+sqrt(5))/2,argument0)/sqrt(5));
-			}
+/// fibonacci(n)
+//
+//  Returns the nth number of the Fibonacci sequence.
+//
+//      n           desired Fibonacci number, non-negative integer, real
+//
+/// GMLscripts.com/license
+{
+    return round(power((1+sqrt(5))/2,argument0)/sqrt(5));
+}
 			</div>
 
 			<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/ds_grid_translate" title="ds_grid_translate(id,horiz,vert)">
-			/// ds_grid_translate(id,horiz,vert)
-			//
-			//  Shifts the contents of a grid by a given number of rows
-			//  and columns. The contents are shifted so that they wrap
-			//  around to the opposite side of the grid data structure.
-			//
-			//      id          grid data structure, real
-			//      horiz       horizontal shift, real
-			//      vert        vertical shift, real
-			//
-			/// GMLscripts.com/license
-			{
-			    var dsid,w,h,sx,sy,mx,my,dx,dy,temp;
-			    dsid = argument0;
-			    w = ds_grid_width(dsid);
-			    h = ds_grid_height(dsid);
-			    sx = (((argument1 mod w)+w) mod w);
-			    sy = (((argument2 mod h)+h) mod h);
-			    mx = w-1;
-			    my = h-1;
-			    dx = mx-sx;
-			    dy = my-sy;
-			    temp = ds_grid_create(w,h);
-			    ds_grid_set_grid_region(temp,dsid,0,0,dx,dy,sx,sy);
-			    if (sx>0) ds_grid_set_grid_region(temp,dsid,dx+1,0,mx,dy,0,sy);
-			    if (sy>0) ds_grid_set_grid_region(temp,dsid,0,dy+1,dx,my,sx,0);
-			    if ((sx>0) && (sy>0)) ds_grid_set_grid_region(temp,dsid,dx+1,dy+1,mx,my,0,0);
-			    ds_grid_copy(dsid,temp);
-			    ds_grid_destroy(temp);
-			    return 0;
-			}
+/// ds_grid_translate(id,horiz,vert)
+//
+//  Shifts the contents of a grid by a given number of rows
+//  and columns. The contents are shifted so that they wrap
+//  around to the opposite side of the grid data structure.
+//
+//      id          grid data structure, real
+//      horiz       horizontal shift, real
+//      vert        vertical shift, real
+//
+/// GMLscripts.com/license
+{
+    var dsid,w,h,sx,sy,mx,my,dx,dy,temp;
+    dsid = argument0;
+    w = ds_grid_width(dsid);
+    h = ds_grid_height(dsid);
+    sx = (((argument1 mod w)+w) mod w);
+    sy = (((argument2 mod h)+h) mod h);
+    mx = w-1;
+    my = h-1;
+    dx = mx-sx;
+    dy = my-sy;
+    temp = ds_grid_create(w,h);
+    ds_grid_set_grid_region(temp,dsid,0,0,dx,dy,sx,sy);
+    if (sx>0) ds_grid_set_grid_region(temp,dsid,dx+1,0,mx,dy,0,sy);
+    if (sy>0) ds_grid_set_grid_region(temp,dsid,0,dy+1,dx,my,sx,0);
+    if ((sx>0) && (sy>0)) ds_grid_set_grid_region(temp,dsid,dx+1,dy+1,mx,my,0,0);
+    ds_grid_copy(dsid,temp);
+    ds_grid_destroy(temp);
+    return 0;
+}
 			</div>
 
 			<div class="gm_codeblock" author="EricDB" source="https://www.gmlscripts.com/script/intercept_course" title="intercept_course(origin,target,speed)">
-			/// intercept_course(origin,target,speed)
-			//
-			//  Returns the course direction required to hit a moving target
-			//  at a given projectile speed, or (-1) if no solution is found.
-			//
-			//      origin      instance with position (x,y), real
-			//      target      instance with position (x,y) and (speed), real
-			//      speed       speed of the projectile, real
-			//
-			/// GMLscripts.com/license
-			{
-			    var origin,target,pspeed,dir,alpha,phi,beta;
-			    origin = argument0;
-			    target = argument1;
-			    pspeed = argument2;
-			    dir = point_direction(origin.x,origin.y,target.x,target.y);
-			    alpha = target.speed / pspeed;
-			    phi = degtorad(target.direction - dir);
-			    beta = alpha * sin(phi);
-			    if (abs(beta) >= 1) {
-			        return (-1);
-			    }
-			    dir += radtodeg(arcsin(beta));
-			    return dir;
-			}
+/// intercept_course(origin,target,speed)
+//
+//  Returns the course direction required to hit a moving target
+//  at a given projectile speed, or (-1) if no solution is found.
+//
+//      origin      instance with position (x,y), real
+//      target      instance with position (x,y) and (speed), real
+//      speed       speed of the projectile, real
+//
+/// GMLscripts.com/license
+{
+    var origin,target,pspeed,dir,alpha,phi,beta;
+    origin = argument0;
+    target = argument1;
+    pspeed = argument2;
+    dir = point_direction(origin.x,origin.y,target.x,target.y);
+    alpha = target.speed / pspeed;
+    phi = degtorad(target.direction - dir);
+    beta = alpha * sin(phi);
+    if (abs(beta) >= 1) {
+        return (-1);
+    }
+    dir += radtodeg(arcsin(beta));
+    return dir;
+}
 			</div>
 			<br/>
 			<hr/>

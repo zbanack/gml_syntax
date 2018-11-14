@@ -7,12 +7,13 @@ A JavaScript syntax highlighter for the GameMaker Language, [YoYo Games' GameMak
 * Local and global variable scoping
 * In-function [documentation linking](http://docs2.yoyogames.com/) for easy referencing
 * Clipboard copying support
+* Code snippet citation in-footer
 
 ## Demo
 
-![gml_syntax demo image 0](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-0.png?raw=true)
-
 You can check out a live demo of gml_syntax.js in your browser **[here](https://banack.me/gm/gml_syntax/)**.
+
+![gml_syntax demo image 0](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-0.png?raw=true)
 
 ## Getting Started
 
