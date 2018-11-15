@@ -22,11 +22,11 @@
  *                2) http://thestepevent.com
  *                3) https://zackbanack.com
  *
- * @version   v0.9.4
- * @date      November 13, 2018
+ * @version   v0.9.5
+ * @date      November 15, 2018
  */
 
-const GM_VERSION = "v0.9.4";
+const GM_VERSION = "v0.9.5";
 const GM_TOKEN_TYPES = [
   { regex: /^[\t\n\r \xA0]/, tokenType: "gm_emp" },
   { regex: /^(?:global\.)(.*?)([A-Za-z0-9_])*/, tokenType: "gm_glo" },
@@ -245,6 +245,7 @@ function gml_syntax() {
  * @param {String}   cnt   The content to insert into the Element
  */
 function gm_innerHTML(el, cnt) {
+  el.style.backgroundColor = "transparent";
   el.innerHTML = cnt;
 }
 
