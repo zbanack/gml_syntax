@@ -5,10 +5,10 @@
 		<meta name="description" content="A JavaScript syntax highlighter/pretty printer for the GameMaker Language.">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" href="gml_syntax_icon.png" />
-		<script src="src/gml_syntax.js"></script>
-		<script src="src/gm_docs2.js"></script>
+		<script src="src/min/gml_syntax-min.js"></script>
+		<script src="src/min/gm_docs2-min.js"></script>
 
-		<link rel="stylesheet" href="src/gml_style.css" />
+		<link rel="stylesheet" href="src/min/gml_style-min.css" />
 		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
 
 		<style>
@@ -39,7 +39,7 @@
 			    text-decoration: underline;
 			}
 			#wrapper {
-			  width: 600px;
+			  width: 640px;
 			  display: block;
 			  margin-left: auto;
 			  margin-right: auto;
@@ -82,16 +82,6 @@
 //      datetime    GameMaker datetime, real
 //
 /// GMLscripts.com/license
-#macro test 2!
-
-test;
-
-var skip = $ffffff;
-
-#region reggy if()
-
-var test, jim;
-jim = 2;
 {
     var timezone = date_get_timezone();
  
@@ -107,7 +97,6 @@ jim = 2;
  
     date_set_timezone(timezone);
  
- test = 2;
     return timestamp;
 }
 			</div>
