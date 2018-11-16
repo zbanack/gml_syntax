@@ -15,6 +15,22 @@ You can check out a live demo of gml_syntax.js in your browser **[here](https://
 
 ![gml_syntax demo image 0](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-0.png?raw=true)
 
+## Changelog
+
+**v0.9.6 (November 15, 2018):**
+* Resolved setAttribute and getAttribute errors
+* Added `#macro` definition and referencing support
+* Various CSS changes:
+    * Default font changed to Menlo
+    * Outer-most `padding` replaced with `margin` in CSS
+    * Smarter word-wrapping
+    * Codeblock border weights casted to `px` from `em`
+    * Font weight of functions normalized
+    * `@media only screen`, basic mobile viewport support
+* JavaScript-disabled display fallback
+* Basic `#region` and `#endregion` tokenizing; collapsable sections are TODO
+* `$color` tokenType changed from `gm_lit` to `gm_int`
+
 ## Getting Started
 
 1. Download the files contained within **[gml_syntax/src](https://github.com/zbanack/gml_syntax/tree/master/src)**

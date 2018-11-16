@@ -2,10 +2,9 @@
     margin: 1em;
     background-color: #222222;
     color: #FFFFFF;
-    font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
-
-  word-break: break-word; /* for others */
-  word-wrap: break-word;  /* for Firefox */
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+    word-break: break-word;
+    word-wrap: break-word;
 }
 
 .gm_codeblock_container {
@@ -14,9 +13,9 @@
     border-radius: 0.75em;
     border-bottom-left-radius: 0.25em;
     border-bottom-right-radius: 0.25em;
-    box-shadow: 0em 0.25em 0.5em rgba(0, 0, 0, 0.125);
+    box-shadow: 0em 4px 16px rgba(0, 0, 0, 0.125);
     font-size: 14px;
-    font-family: Monaco, Consolas, Courier New, monospace;
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
     color: #FFFFFF;
 }
 
@@ -41,11 +40,13 @@
     display: table-cell;
     text-align: right;
     padding-left: 1em;
-  word-break: keep-all; /* for others */
-  word-wrap: keep-all;  /* for Firefox */
+    word-break: keep-all;
+ /* for others */
+    word-wrap: keep-all;
+  /* for Firefox */
     padding-right: 0.5em;
     background-color: #2b343b;
-    border-right: 2px solid #97b2c8;
+    border-right: 1px solid #97b2c8;
     color: #40c3f4;
     font-size: 12px;
 }
@@ -64,7 +65,7 @@
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
     background-image: linear-gradient(90deg, #114239, #25a083);
-    border-bottom: 2px solid #282828;
+    border-bottom: 1px solid #009338;
     font-size: 14px;
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 }
@@ -87,12 +88,15 @@
     .gm_footer {
         font-size: 10px;
     }
+
     .gm_header {
         font-size: 12px;
     }
+
     .gm_codeblock_container {
         font-size: 12px;
     }
+
     .gm_code_pre > .gm_line_number::before {
         font-size: 10px;
     }
@@ -237,6 +241,10 @@
 
 .gm_glb {
     color: #FF7EFF;
+}
+
+.gm_mac {
+    color: #ff2d39;
 }
 
 .gm_fnc a:hover {
