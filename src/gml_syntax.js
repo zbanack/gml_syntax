@@ -22,11 +22,11 @@
  *                2) http://thestepevent.com
  *                3) https://zackbanack.com
  *
- * @version   v0.9.6
- * @date      November 15, 2018
+ * @version   v0.9.7
+ * @date      December 4, 2018
  */
 
-const GM_VERSION = "v0.9.6";
+const GM_VERSION = "v0.9.7";
 const GM_TOKEN_TYPES = [{
         regex: /^[\t\n\r \xA0]/,
         tokenType: "gm_emp"
@@ -88,34 +88,53 @@ const GM_TOKEN_TYPES = [{
  * Call this script once on page body onload.
  *
  * @author  Zack Banack <https://zackbanack.com>
+ *
+ * @param [String]   input_str      Optional, string to tokenize
+ * @return {list}    return_stack   2D array where 1st dimension is the codeblock
+        and second dimension is a pattern of ABABAB: token, token types
+ * TODO: Cleanup optional input string spaghetti logic
  */
-function gml_syntax() {
+function gml_syntax(input_str) {
+    let using_manual_input = input_str !== undefined;
 
     // Get all gm_codeblock elements in document
-    let blocks = document.getElementsByClassName("gm_codeblock");
+    let blocks = using_manual_input ? [1] : document.getElementsByClassName("gm_codeblock");
     let block_n = -1;
+
+    let return_stack = [];
+    let temp_return_stack = [];
+
     // Iterate over all gm_codeblock elements in document
     for (block in blocks) {
         block_n++;
 
         // Get the reference to the individual element
         let el = document.getElementsByClassName("gm_codeblock")[block_n];
-        if (el == undefined) continue;
+        if (!using_manual_input) {
+            if (el == undefined) continue;
+        }
 
         // Set a unique id of codeblock element
         //el.setAttribute("id", "gm_codeblock_id_" + block);
 
         // Pull (and clean) the raw data from the codeblock
         let data = "";
-        if (el.innerHTML != undefined) {
-            data = (
-                el.innerHTML.replace(/[\t\v \xA0]/gm, " ")
-                .replace(/&lt;/g, "<")
-                .replace(/&gt;/g, ">")
-                .replace(/^\s+|\s+$/g, '')
-                .replace(/&amp;/g, '&')
-            );
+        if (!using_manual_input) {
+            if (el.innerHTML != undefined) {
+                data = el.innerHTML;
+            }
         }
+        else {
+            data = input_str;
+        }
+
+        data = (
+            data.replace(/[\t\v \xA0]/gm, " ")
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/^\s+|\s+$/g, '')
+            .replace(/&amp;/g, '&')
+        );
 
         // Tokenize data
         let tokens = gm_getTokens(data);
@@ -163,6 +182,11 @@ function gml_syntax() {
                     output += gm_span_wr("global", "gm_kwd"); // "global"
                     output += gm_span_wr(".", "gm_pnc"); // "."
                     output += gm_span_wr(tkn, "gm_glb"); // global var name
+
+                    // TODO: Clearner implementation
+                    temp_return_stack.push("global", "gm_kwd");
+                    temp_return_stack.push(".", "gm_pnc");
+                    temp_return_stack.push(tkn, "gm_glb");
                     glb_fix = true;
                     break;
                 case ("gm_kwd"):
@@ -246,6 +270,7 @@ function gml_syntax() {
                     }
                 }
                 output += gm_span_wr(tkn, tkn_typ_copy);
+                temp_return_stack.push(tkn, tkn_typ_copy);
             }
 
             // Line ended, append necessary spans
@@ -259,62 +284,70 @@ function gml_syntax() {
         output += line_end;
 
         // Pull citation-related attributes
-        let author = el.getAttribute("author");
-        let source = el.getAttribute("source");
+        if (!using_manual_input) {
+            let author = el.getAttribute("author");
+            let source = el.getAttribute("source");
 
-        // Get (and set) the codeblock title
-        let title = el.getAttribute("title");
-        let snippet = "Code snippet";
-        if (title !== null) snippet = title;
+            // Get (and set) the codeblock title
+            let title = el.getAttribute("title");
+            let snippet = "Code snippet";
+            if (title !== null) snippet = title;
 
-        el.setAttribute("title", "GML code snippet, " + title);
+            el.setAttribute("title", "GML code snippet, " + title);
+        
 
-        // Create a unique pre span id
-        let pre_id = "gm_codeblock_pre_id_" + block;
+            // Create a unique pre span id
+            let pre_id = "gm_codeblock_pre_id_" + block;
 
-        // Craft the content that goes into the header
-        let snippet_name = (
-            "&#9698;&nbsp;<strong>GML</strong>&nbsp;&raquo;&nbsp;" + snippet
-        );
-
-        let copy_button = (
-            "<a onclick=\"gm_clipboard(\'" + pre_id + "\')\" href=\"javascript:void(0);\"" +
-            "title=\"Copy to clipboard\"><span class=\"gm_circle_background\">Copy</span></a>"
-        );
-
-        // Craft the content that goes into the footer
-        let citation = "";
-        if (author !== null && source !== null) {
-            citation = (
-                "<strong>Author: </strong><a href=\"" + source + "\" target=\"_blank\">" + author + "</a>"
+            // Craft the content that goes into the header
+            let snippet_name = (
+                "&#9698;&nbsp;<strong>GML</strong>&nbsp;&raquo;&nbsp;" + snippet
             );
+
+            let copy_button = (
+                "<a onclick=\"gm_clipboard(\'" + pre_id + "\')\" href=\"javascript:void(0);\"" +
+                "title=\"Copy to clipboard\"><span class=\"gm_circle_background\">Copy</span></a>"
+            );
+
+            // Craft the content that goes into the footer
+            let citation = "";
+            if (author !== null && source !== null) {
+                citation = (
+                    "<strong>Author: </strong><a href=\"" + source + "\" target=\"_blank\">" + author + "</a>"
+                );
+            }
+
+            let linkback = (
+                "<a href=\"https://github.com/zbanack/gml_syntax\" title=\"Developed by Zack Banack\" target=\"_blank\">" +
+                "gml_syntax.js " + GM_VERSION + "</a>&nbsp;<span class=\"gm_span_heart\">&#9829</span>"
+            );
+
+            /**
+             * Craft the innerHTML, including prettified code,
+             *    the header content, and the footer content.
+             */
+            let inner = (
+                "<div class=\"gm_codeblock_container\">" +
+                gm_row_gen(true, snippet_name, copy_button) +
+                "<span class=\"gm_code_pre\" id=\"" + pre_id + "\">" +
+                output +
+                "</span>" +
+                gm_row_gen(false, citation, linkback) +
+                "</div>"
+            );
+
+            /**
+             * Finally, update the DOM
+             * TODO: use a more efficient practice in updating the page content
+             */
+            gm_innerHTML(el, inner);
         }
 
-        let linkback = (
-            "<a href=\"https://github.com/zbanack/gml_syntax\" title=\"Developed by Zack Banack\" target=\"_blank\">" +
-            "gml_syntax.js " + GM_VERSION + "</a>&nbsp;<span class=\"gm_span_heart\">&#9829</span>"
-        );
-
-        /**
-         * Craft the innerHTML, including prettified code,
-         *    the header content, and the footer content.
-         */
-        let inner = (
-            "<div class=\"gm_codeblock_container\">" +
-            gm_row_gen(true, snippet_name, copy_button) +
-            "<span class=\"gm_code_pre\" id=\"" + pre_id + "\">" +
-            output +
-            "</span>" +
-            gm_row_gen(false, citation, linkback) +
-            "</div>"
-        );
-
-        /**
-         * Finally, update the DOM
-         * TODO: use a more efficient practice in updating the page content
-         */
-        gm_innerHTML(el, inner);
+            return_stack.push(temp_return_stack);
+            temp_return_stack = [];
     }
+
+    return return_stack;
 }
 
 /**
