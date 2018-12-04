@@ -17,6 +17,10 @@ You can check out a live demo of gml_syntax.js in your browser **[here](https://
 
 ## Changelog
 
+**v0.9.7 (December 4, 2018):**
+* gml_syntax() call now accepts an [optional] string argument for easy tokenizing
+* gml_syntax() now returns 2d array of tokens and their types for all present codeblocks
+
 **v0.9.6 (November 15, 2018):**
 * Resolved setAttribute and getAttribute errors
 * Added `#macro` definition and referencing support
