@@ -5,7 +5,7 @@
 		<meta name="description" content="A JavaScript syntax highlighter/pretty printer for the GameMaker Language.">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="icon" href="gml_syntax_icon.png" />
-		<script src="src/min/gml_syntax-min.js"></script>
+		<script src="src/gml_syntax.js"></script>
 		<script src="src/min/gm_docs2-min.js"></script>
 
 		<link rel="stylesheet" href="src/min/gml_style-min.css" />
@@ -56,6 +56,16 @@
 		  gtag('config', 'UA-91441927-1');
 		</script>
 
+		<script>
+			function gml_test() {
+				let lst = gml_syntax("global.test = 2");
+
+				for(i in lst) {
+					console.log(lst[i]);
+				}
+			}
+		</script>
+
 	</head>
 
 	<body onload="gml_syntax()">
@@ -84,7 +94,7 @@
 /// GMLscripts.com/license
 {
     var timezone = date_get_timezone();
- 
+
     date_set_timezone(timezone_utc);
  
     if (argument_count > 0) {
@@ -175,6 +185,7 @@
     return dir;
 }
 			</div>
+					<button onclick="gml_test()">Console Output test (arg0 str)</button>
 			<br/>
 			<hr/>
 			<div class="note">This project is not affiliated with YoYo Games Ltd.<br/>&copy; 2018 - Zack Banack</div>
