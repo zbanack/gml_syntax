@@ -1,178 +1,24 @@
 # gml_syntax.js
 
-A JavaScript syntax highlighter for the GameMaker Language, [YoYo Games' GameMaker Studio 1.4 and 2.x](https://yoyogames.com) programming language. Created for [The Step Event](http://thestepevent.com).
+A JavaScript syntax parser for the GameMaker Language, [YoYo Games' GameMaker Studio 1.4 and 2.x](https://yoyogames.com) programming language. Created for [The Step Event](http://thestepevent.com).
 
 **Includes:**
-* Color-coded syntax near-1:1 to what you'll find in GameMaker Studio 2.x
-* Local and global variable scoping
-* In-function [documentation linking](http://docs2.yoyogames.com/) for easy referencing
-* Clipboard copying support
-* Code snippet citation in-footer
+* Local, global, and resource-level variable scoping
+* Macros, enums, and regions
+* Faux resource referencing (sprite*, object*, spr_*, obj_*)
 
 ## Demo
 
-You can check out a live demo of gml_syntax.js in your browser **[here](https://banack.me/gm/gml_syntax/)**.
+You can check out a live demo of gml_syntax.js, with pretty-printing applied, in your browser at **[GMLsnip.com](http://gmlsnip.com)**.
 
 ![gml_syntax demo image 0](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-0.png?raw=true)
 
-## Changelog
-
-**v0.9.7 (December 4, 2018):**
-* gml_syntax() call now accepts an [optional] string argument for easy tokenizing
-* gml_syntax() now returns 2d array of tokens and their types for all present codeblocks
-
-**v0.9.6 (November 15, 2018):**
-* Resolved setAttribute and getAttribute errors
-* Added `#macro` definition and referencing support
-* Various CSS changes:
-    * Default font changed to Menlo
-    * Outer-most `padding` replaced with `margin` in CSS
-    * Smarter word-wrapping
-    * Codeblock border weights casted to `px` from `em`
-    * Font weight of functions normalized
-    * `@media only screen`, basic mobile viewport support
-* JavaScript-disabled display fallback
-* Basic `#region` and `#endregion` tokenizing; collapsable sections are TODO
-* `$color` tokenType changed from `gm_lit` to `gm_int`
-
-## Getting Started
-
-1. Download the files contained within **[gml_syntax/src](https://github.com/zbanack/gml_syntax/tree/master/src)**
-	1. Minified versions of the JavaScript code and CSS are available (and recommended): **[gml_syntax/src/min](https://github.com/zbanack/gml_syntax/tree/master/src/min)**
-2. Upload the files to your webhost
-	1. Alternatively, you can use a CDN to serve raw files
-
-### Setup
-
-* Once the files are uploaded, you must reference them in a script tag in the `<head>` of your document (e.g. `index.html`):
-	* `gm_docs2.js`/`gm_docs2-min.js` is optional. If you don't care for in-function documentation linking, it can be excluded.
-
-```
-<!-- gml_syntax JavaScript -->
-<script src="src/min/gml_syntax-min.js"></script>
-<script src="src/min/gm_docs2-min.js"></script>
-
-<!-- gml_syntax Stylesheet -->
-<link rel="stylesheet" href="src/min/gml_style-min.css">
-```
-
 ### Usage
 
-1. Put GameMaker Language code snippets in `<div class="gm_codeblock">...</div>`.
-2. Call the function, `gml_syntax()`, on `<body>` load.
+Call function gml_syntax(input_str)
+ * @param [String]   input_str      Optional, string to tokenize
+ * @return {Array}   return_stack   Token objects (class and nanme)
 
-```
-<body onload="gml_syntax()">
-```
-
-If you don't have access to the `<body>` tag, you can do something similar to the following:
-
-```
-<script>
-window.onload = function() {
-  gml_syntax();
-};
-</script>
-```
-
-### Attributes
-
-Inside the `<div class="gm_codeblock">`, you can define codeblock-specific attributes that will be appended to the snippet's header and footer.
-
-Attribute     | Description
-------------- | -------------
-@author 	  | The author of the script
-@source 	  | A URL to the source of the script
-@title  	  | The name of the code snippet
-
-## Examples
-
-```
-<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/unix_timestamp" title="unix_timestamp([datetime])">
-/// unix_timestamp([datetime])
-//
-//  Returns a Unix timestamp for the current time
-//  or optionally given GameMaker datetime value.
-//
-//      datetime    GameMaker datetime, real
-//
-/// GMLscripts.com/license
-{
-    var timezone = date_get_timezone();
- 
-    date_set_timezone(timezone_utc);
- 
-    if (argument_count > 0) {
-        var datetime = argument[0];
-    } else {
-        var datetime = date_current_datetime();
-    }
- 
-    var timestamp = round(date_second_span(25569, datetime));
- 
-    date_set_timezone(timezone);
- 
-    return timestamp;
-}
-</div>
-```
-
-![gml_syntax demo image 1](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-1.png?raw=true)
-
-```
-<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/fibonacci" title="fibonacci(n)">
-/// fibonacci(n)
-//
-//  Returns the nth number of the Fibonacci sequence.
-//
-//      n           desired Fibonacci number, non-negative integer, real
-//
-/// GMLscripts.com/license
-{
-    return round(power((1+sqrt(5))/2,argument0)/sqrt(5));
-}
-</div>
-```
-
-![gml_syntax demo image 2](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-2.png?raw=true)
-
-```
-<div class="gm_codeblock" author="xot" source="https://www.gmlscripts.com/script/ds_grid_translate" title="ds_grid_translate(id,horiz,vert) ">
-/// ds_grid_translate(id,horiz,vert)
-//
-//  Shifts the contents of a grid by a given number of rows
-//  and columns. The contents are shifted so that they wrap
-//  around to the opposite side of the grid data structure.
-//
-//      id          grid data structure, real
-//      horiz       horizontal shift, real
-//      vert        vertical shift, real
-//
-/// GMLscripts.com/license
-{
-    var dsid,w,h,sx,sy,mx,my,dx,dy,temp;
-    dsid = argument0;
-    w = ds_grid_width(dsid);
-    h = ds_grid_height(dsid);
-    sx = (((argument1 mod w)+w) mod w);
-    sy = (((argument2 mod h)+h) mod h);
-    mx = w-1;
-    my = h-1;
-    dx = mx-sx;
-    dy = my-sy;
-    temp = ds_grid_create(w,h);
-    ds_grid_set_grid_region(temp,dsid,0,0,dx,dy,sx,sy);
-    if (sx>0) ds_grid_set_grid_region(temp,dsid,dx+1,0,mx,dy,0,sy);
-    if (sy>0) ds_grid_set_grid_region(temp,dsid,0,dy+1,dx,my,sx,0);
-    if ((sx>0) && (sy>0)) ds_grid_set_grid_region(temp,dsid,dx+1,dy+1,mx,my,0,0);
-    ds_grid_copy(dsid,temp);
-    ds_grid_destroy(temp);
-    return 0;
-}
-</div>
-```
-
-![gml_syntax demo image 3](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-3.png?raw=true)
 
 ## Compression/Minifying
 
