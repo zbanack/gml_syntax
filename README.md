@@ -11,7 +11,10 @@ A JavaScript syntax parser for the GameMaker Language, [YoYo Games' GameMaker St
 
 You can check out a live demo of gml_syntax.js, with pretty-printing applied, in your browser at **[GMLsnip.com](http://gmlsnip.com)**.
 
-![gml_syntax demo image 0](https://github.com/zbanack/gml_syntax/blob/master/demo/gml_syntax-v0.9.1-demo-0.png?raw=true)
+![gml_syntax demo image 0](https://github.com/zbanack/gml_syntax/blob/master/promo/img0.png?raw=true)
+![gml_syntax demo image 1](https://github.com/zbanack/gml_syntax/blob/master/promo/img1.png?raw=true)
+![gml_syntax demo image 2](https://github.com/zbanack/gml_syntax/blob/master/promo/img2.png?raw=true)
+![gml_syntax demo image 3](https://github.com/zbanack/gml_syntax/blob/master/promo/img3.png?raw=true)
 
 ### Usage
 
