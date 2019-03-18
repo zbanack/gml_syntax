@@ -2,8 +2,6 @@
  * == gml_syntax.js ==
  *
  * A JavaScript syntax highligher for GameMaker Language.
- *    Includes local and global variable scoping and
- *    documentation function-linking (requires gm_docs2.js)
  *
  * @file      This is not a language/syntax validator.
  *       
@@ -90,17 +88,16 @@ function gml_find_replace(str, find_arr, replace_arr) {
     return str;
 }
 /**
- * Pretty-prints GameMaker Language contained within 
- *  HTML div elements of the class "gm_codeblock".
+ * Parses GameMaker Language
  *
  * Call this script once on page body onload.
  *
  * @author  Zack Banack <https://zackbanack.com>
  *
  * @param [String]   input_str      Optional, string to tokenize
- * @return {Array}    return_stack   Token objects (class and name)
+ * @return {Array}   return_stack   Token objects (class and name)
  */
-function gml_syntax(input_str, include_links) {
+function gml_syntax(input_str) {
     let stack_classes = [];
     let stack_contents = [];
     // Pull (and clean) the raw data from the codeblock
