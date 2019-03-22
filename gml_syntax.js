@@ -101,7 +101,7 @@ function gml_syntax(input_str) {
     let stack_classes = [];
     let stack_contents = [];
     // Pull (and clean) the raw data from the codeblock
-    let data = gml_strip_tags(input_str + '\t', ['<', '>', '\\n', '\\t', '&'], ['LT', 'GT', 'NL', 'TAB', 'AMP']);
+    let data = gml_strip_tags(input_str + '\t', ['<', '>', '\\n', '\\t', '&', '\\$'], ['LT', 'GT', 'NL', 'TAB', 'AMP', 'D']);
     // Tokenize data
     let tokens = gm_getTokens(data);
     // Local vars
@@ -328,9 +328,9 @@ function gml_syntax(input_str) {
         count++;
     }
     for (var s = 0; s < stack_contents.length; s++) {
-        let has_sym = (gm_contains(stack_contents[s], [ESCAPE_PREFIX + 'AMP', ESCAPE_PREFIX + 'LT', ESCAPE_PREFIX + 'GT', ESCAPE_PREFIX + 'NL', ESCAPE_PREFIX + 'TAB']));
+        let has_sym = (gm_contains(stack_contents[s], [ESCAPE_PREFIX + 'AMP', ESCAPE_PREFIX + 'LT', ESCAPE_PREFIX + 'GT', ESCAPE_PREFIX + 'NL', ESCAPE_PREFIX + 'TAB', ESCAPE_PREFIX + 'D']));
         if (stack_classes[s] !== 'gm_fnc') stack_contents[s] = stack_contents[s].replace(/ /g, '&nbsp;').replace(/gz_SPECIAL_ESCAPE_AMP/g, '&amp;').replace(/gz_SPECIAL_ESCAPE_LT/g, '&lt;').replace(/gz_SPECIAL_ESCAPE_GT/g, '&gt;');
-        stack_contents[s] = stack_contents[s].replace(/gz_SPECIAL_ESCAPE_NL/g, ' gz_SPECIAL_ESCAPE_TAB <br />').replace(/gz_SPECIAL_ESCAPE_TAB/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+        stack_contents[s] = stack_contents[s].replace(/gz_SPECIAL_ESCAPE_NL/g, ' gz_SPECIAL_ESCAPE_TAB <br />').replace(/gz_SPECIAL_ESCAPE_TAB/g, '&nbsp;&nbsp;&nbsp;&nbsp;').replace(/gz_SPECIAL_ESCAPE_D/g, '$')
         if (has_sym && s - 1 >= 0) {
             if (stack_classes[s - 1] === 'gm_emp') {
                 stack_contents[s - 1] = "";
